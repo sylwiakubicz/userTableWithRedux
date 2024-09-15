@@ -17,25 +17,25 @@ const fetchUserDataSlice = createSlice({
         filterByUsername: (state, payload : PayloadAction<string>) => {
             return {
                 ...state,
-                filterUsers: state.filterUsers.filter((user : User) => user.username.toLowerCase().startsWith(payload.payload.toLowerCase()))
+                filterUsers: state.users.filter((user : User) => user.username.toLowerCase().startsWith(payload.payload.toLowerCase()))
             }
         },
         filterByEmail: (state, payload : PayloadAction<string>) => {
             return {
                 ...state,
-                filterUsers: state.filterUsers.filter((user : User) => user.email.toLowerCase().startsWith(payload.payload.toLowerCase()))
+                filterUsers: state.users.filter((user : User) => user.email.toLowerCase().startsWith(payload.payload.toLowerCase()))
             }
         },
         filterByName: (state, payload : PayloadAction<string>) => {
             return {
                 ...state,
-                filterUsers: state.filterUsers.filter((user : User) => user.name.toLowerCase().startsWith(payload.payload.toLowerCase()))
+                filterUsers: state.users.filter((user : User) => user.name.toLowerCase().startsWith(payload.payload.toLowerCase()))
             }
         },
         filterByPhone: (state, payload : PayloadAction<string>) => {
             return {
                 ...state,
-                filterUsers: state.filterUsers.filter((user : User) => user.phone.toLowerCase().startsWith(payload.payload.toLowerCase()))
+                filterUsers: state.users.filter((user : User) => user.phone.toLowerCase().startsWith(payload.payload.toLowerCase()))
             }
         },
         resetFilters: (state) => {

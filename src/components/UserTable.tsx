@@ -13,7 +13,6 @@ const UserTable = () => {
   const isLoading = useSelector((state : RootState) => state.fetchUserData.loading)
   const dispatch = useDispatch<AppDispatch>();
 
-
   useEffect(() => {
     dispatch(fetchUsers());
   }, [dispatch]);
@@ -25,11 +24,45 @@ const UserTable = () => {
   ) : (
     <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-dark-text shadow-md">
       <thead  className="text-[1rem] text-gray-700 uppercase bg-custom-light-gray dark:bg-dark-secondary dark:text-dark-text">
-        <tr className='border-b dark:border-dark-text'>
-          <th scope="col" className="px-6 py-3 text-akcent-color dark:text-dark-akcent-color" >Name</th>
-          <th scope="col" className="px-6 py-3 text-akcent-color dark:text-dark-akcent-color">Username</th>
-          <th scope="col" className="px-6 py-3 text-akcent-color dark:text-dark-akcent-color">Email</th>
-          <th scope="col" className="px-6 py-3 text-akcent-color dark:text-dark-akcent-color">Phone number</th>
+        <tr>
+          <th scope="col" className="px-6 pt-3 pb-1 text-akcent-color dark:text-dark-akcent-color" >Name</th>
+          <th scope="col" className="px-6 pt-3 pb-1 text-akcent-color dark:text-dark-akcent-color">Username</th>
+          <th scope="col" className="px-6 pt-3 pb-1 text-akcent-color dark:text-dark-akcent-color">Email</th>
+          <th scope="col" className="px-6 pt-3 pb-1 text-akcent-color dark:text-dark-akcent-color">Phone number</th>
+        </tr>
+        <tr className='border-b dark:border-dark-text '>
+          <th className='pl-6 pb-2'>
+            <input
+              type="text"
+              placeholder="Filter by name"
+              onChange={(e) => dispatch(filterByName(e.target.value))}
+              className="w-full px-2 py-1 h-9 font-light placeholder:opacity-70 border-[1px] border-gray-200 dark:border-dark-secondary dark:bg-dark-text dark:placeholder:text-dark-secondary dark:text-dark-secondary focus-visible:outline-none"
+            />
+          </th>
+          <th className='pl-6 pb-2'>
+            <input
+              type="text"
+              placeholder="Filter by username"
+              onChange={(e) => dispatch(filterByUsername(e.target.value))}
+              className="w-full px-2 py-1 h-9 font-light placeholder:opacity-70 border-[1px] border-gray-200 dark:border-dark-secondary dark:bg-dark-text dark:placeholder:text-dark-secondary dark:text-dark-secondary focus-visible:outline-none"
+            />
+          </th>
+          <th className='pl-6 pb-2'>
+            <input
+              type="text"
+              placeholder="Filter by email"
+              onChange={(e) => dispatch(filterByEmail(e.target.value))}
+              className="w-full px-2 py-1 h-9 font-light placeholder:opacity-70 border-[1px] border-gray-200 dark:border-dark-secondary dark:bg-dark-text dark:placeholder:text-dark-secondary dark:text-dark-secondary focus-visible:outline-none"
+            />
+          </th>
+          <th className='pl-6 pr-6 pb-2'>
+            <input
+              type="text"
+              placeholder="Filter by phone"
+              onChange={(e) => dispatch(filterByPhone(e.target.value))}
+              className="w-full px-2 py-1 h-9 font-light placeholder:opacity-70 border-[1px] border-gray-200 dark:border-dark-secondary dark:bg-dark-text dark:placeholder:text-dark-secondary dark:text-dark-secondary focus-visible:outline-none"
+            />
+          </th>
         </tr>
       </thead>
       <tbody>
