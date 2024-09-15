@@ -6,13 +6,45 @@ import axios from "axios";
 const initialState : FetchUserDataState = {
     loading: false,
     users: [],
+    filterUsers: [],
     error: ''
 };
 
 const fetchUserDataSlice = createSlice({
     name: "fetchUserData",
     initialState,
-    reducers: {},
+    reducers: {
+        filterByUsername: (state, payload : PayloadAction<string>) => {
+            return {
+                ...state,
+                filterUsers: state.filterUsers.filter((user : User) => user.username.startsWith(payload.payload))
+            }
+        },
+        filterByEmail: (state, payload : PayloadAction<string>) => {
+            return {
+                ...state,
+                filterUsers: state.filterUsers.filter((user : User) => user.email.startsWith(payload.payload))
+            }
+        },
+        filterByName: (state, payload : PayloadAction<string>) => {
+            return {
+                ...state,
+                filterUsers: state.filterUsers.filter((user : User) => user.name.startsWith(payload.payload))
+            }
+        },
+        filterByPhone: (state, payload : PayloadAction<string>) => {
+            return {
+                ...state,
+                filterUsers: state.filterUsers.filter((user : User) => user.phone.startsWith(payload.payload))
+            }
+        },
+        resetFilters: (state) => {
+            return {
+                ...state,
+                filterUsers: state.users
+            }
+        }
+    },
     extraReducers: (builder) => {
         builder
         .addCase(fetchUsers.pending, (state) => {
@@ -25,6 +57,7 @@ const fetchUserDataSlice = createSlice({
             return {
                 loading: false,
                 users: action.payload,
+                filterUsers: action.payload,
                 error: ''
             };
         })
@@ -32,6 +65,7 @@ const fetchUserDataSlice = createSlice({
             return {
                 loading: false,
                 users: [],
+                filterUsers: [],
                 error: action.payload || 'Failed to fetch users'
             };
         })
@@ -57,6 +91,6 @@ export const fetchUsers = createAsyncThunk<User[],void,{ rejectValue: string }>(
 
 )
 
-export const {} = fetchUserDataSlice.actions;
+export const {filterByEmail, filterByName, filterByPhone, filterByUsername, resetFilters} = fetchUserDataSlice.actions;
 
 export default fetchUserDataSlice.reducer;

@@ -2,13 +2,13 @@ import { useEffect } from 'react';
 import { User } from '../interfaces/User';
 import { AppDispatch, RootState } from '../redux/store';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchUsers } from '../redux/user/userSlice';
+import { fetchUsers, filterByEmail, filterByName, filterByPhone, filterByUsername, resetFilters } from '../redux/user/userSlice';
 
 
 
 const UserTable = () => {
 
-  const userData = useSelector((state : RootState) => state.fetchUserData.users)
+  const userData = useSelector((state : RootState) => state.fetchUserData.filterUsers)
   const error = useSelector((state: RootState) => state.fetchUserData.error)
   const isLoading = useSelector((state : RootState) => state.fetchUserData.loading)
   const dispatch = useDispatch<AppDispatch>();
