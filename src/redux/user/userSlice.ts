@@ -17,25 +17,25 @@ const fetchUserDataSlice = createSlice({
         filterByUsername: (state, payload : PayloadAction<string>) => {
             return {
                 ...state,
-                filterUsers: state.filterUsers.filter((user : User) => user.username.startsWith(payload.payload))
+                filterUsers: state.filterUsers.filter((user : User) => user.username.toLowerCase().startsWith(payload.payload.toLowerCase()))
             }
         },
         filterByEmail: (state, payload : PayloadAction<string>) => {
             return {
                 ...state,
-                filterUsers: state.filterUsers.filter((user : User) => user.email.startsWith(payload.payload))
+                filterUsers: state.filterUsers.filter((user : User) => user.email.toLowerCase().startsWith(payload.payload.toLowerCase()))
             }
         },
         filterByName: (state, payload : PayloadAction<string>) => {
             return {
                 ...state,
-                filterUsers: state.filterUsers.filter((user : User) => user.name.startsWith(payload.payload))
+                filterUsers: state.filterUsers.filter((user : User) => user.name.toLowerCase().startsWith(payload.payload.toLowerCase()))
             }
         },
         filterByPhone: (state, payload : PayloadAction<string>) => {
             return {
                 ...state,
-                filterUsers: state.filterUsers.filter((user : User) => user.phone.startsWith(payload.payload))
+                filterUsers: state.filterUsers.filter((user : User) => user.phone.toLowerCase().startsWith(payload.payload.toLowerCase()))
             }
         },
         resetFilters: (state) => {
