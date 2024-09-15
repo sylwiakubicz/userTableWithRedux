@@ -1,8 +1,8 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { User } from '../interfaces/User';
 import { AppDispatch, RootState } from '../redux/store';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchUsers, filterByEmail, filterByName, filterByPhone, filterByUsername, resetFilters } from '../redux/user/userSlice';
+import { fetchUsers, applyFilters, resetFilters } from '../redux/user/userSlice';
 
 
 
@@ -13,9 +13,27 @@ const UserTable = () => {
   const isLoading = useSelector((state : RootState) => state.fetchUserData.loading)
   const dispatch = useDispatch<AppDispatch>();
 
+  const [filters, setFilters] = useState({
+    username: '',
+    email: '',
+    name: '',
+    phone: ''
+  });
+
+  const handleFilterChange = (field: string) => (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFilters({
+      ...filters,
+      [field]: e.target.value
+    });
+  };
+
   useEffect(() => {
     dispatch(fetchUsers());
   }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(applyFilters(filters));
+  }, [dispatch, filters]);
 
   return isLoading ? (
     <h2 className="text-lg dark:text-dark-text">Loading...</h2>
@@ -35,7 +53,8 @@ const UserTable = () => {
             <input
               type="text"
               placeholder="Filter by name"
-              onChange={(e) => dispatch(filterByName(e.target.value))}
+              value={filters.name}
+              onChange={handleFilterChange('name')}
               className="w-full px-2 py-1 h-9 font-light placeholder:opacity-70 border-[1px] border-gray-200 dark:border-dark-secondary dark:bg-dark-text dark:placeholder:text-dark-secondary dark:text-dark-secondary focus-visible:outline-none"
             />
           </th>
@@ -43,7 +62,8 @@ const UserTable = () => {
             <input
               type="text"
               placeholder="Filter by username"
-              onChange={(e) => dispatch(filterByUsername(e.target.value))}
+              value={filters.username}
+              onChange={handleFilterChange('username')}
               className="w-full px-2 py-1 h-9 font-light placeholder:opacity-70 border-[1px] border-gray-200 dark:border-dark-secondary dark:bg-dark-text dark:placeholder:text-dark-secondary dark:text-dark-secondary focus-visible:outline-none"
             />
           </th>
@@ -51,7 +71,8 @@ const UserTable = () => {
             <input
               type="text"
               placeholder="Filter by email"
-              onChange={(e) => dispatch(filterByEmail(e.target.value))}
+              value={filters.email}
+              onChange={handleFilterChange('email')}
               className="w-full px-2 py-1 h-9 font-light placeholder:opacity-70 border-[1px] border-gray-200 dark:border-dark-secondary dark:bg-dark-text dark:placeholder:text-dark-secondary dark:text-dark-secondary focus-visible:outline-none"
             />
           </th>
@@ -59,7 +80,8 @@ const UserTable = () => {
             <input
               type="text"
               placeholder="Filter by phone"
-              onChange={(e) => dispatch(filterByPhone(e.target.value))}
+              value={filters.phone}
+              onChange={handleFilterChange('phone')}
               className="w-full px-2 py-1 h-9 font-light placeholder:opacity-70 border-[1px] border-gray-200 dark:border-dark-secondary dark:bg-dark-text dark:placeholder:text-dark-secondary dark:text-dark-secondary focus-visible:outline-none"
             />
           </th>

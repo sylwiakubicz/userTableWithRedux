@@ -14,29 +14,16 @@ const fetchUserDataSlice = createSlice({
     name: "fetchUserData",
     initialState,
     reducers: {
-        filterByUsername: (state, payload : PayloadAction<string>) => {
-            return {
-                ...state,
-                filterUsers: state.users.filter((user : User) => user.username.toLowerCase().startsWith(payload.payload.toLowerCase()))
-            }
-        },
-        filterByEmail: (state, payload : PayloadAction<string>) => {
-            return {
-                ...state,
-                filterUsers: state.users.filter((user : User) => user.email.toLowerCase().startsWith(payload.payload.toLowerCase()))
-            }
-        },
-        filterByName: (state, payload : PayloadAction<string>) => {
-            return {
-                ...state,
-                filterUsers: state.users.filter((user : User) => user.name.toLowerCase().startsWith(payload.payload.toLowerCase()))
-            }
-        },
-        filterByPhone: (state, payload : PayloadAction<string>) => {
-            return {
-                ...state,
-                filterUsers: state.users.filter((user : User) => user.phone.toLowerCase().startsWith(payload.payload.toLowerCase()))
-            }
+        applyFilters: (state, action: PayloadAction<{ username?: string; email?: string; name?: string; phone?: string }>) => {
+            const { username, email, name, phone } = action.payload;
+            state.filterUsers = state.users.filter((user: User) => {
+                return (
+                    (!username || user.username.toLowerCase().startsWith(username.toLowerCase())) &&
+                    (!email || user.email.toLowerCase().startsWith(email.toLowerCase())) &&
+                    (!name || user.name.toLowerCase().startsWith(name.toLowerCase())) &&
+                    (!phone || user.phone.toLowerCase().startsWith(phone.toLowerCase()))
+                );
+            });
         },
         resetFilters: (state) => {
             return {
@@ -91,6 +78,6 @@ export const fetchUsers = createAsyncThunk<User[],void,{ rejectValue: string }>(
 
 )
 
-export const {filterByEmail, filterByName, filterByPhone, filterByUsername, resetFilters} = fetchUserDataSlice.actions;
+export const { applyFilters, resetFilters} = fetchUserDataSlice.actions;
 
 export default fetchUserDataSlice.reducer;
