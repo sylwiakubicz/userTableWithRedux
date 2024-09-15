@@ -27,6 +27,15 @@ const UserTable = () => {
     });
   };
 
+  const handleReset = () => {
+    setFilters({
+      username: '',
+      email: '',
+      name: '',
+      phone: ''
+    })
+  }
+
   useEffect(() => {
     dispatch(fetchUsers());
   }, [dispatch]);
@@ -48,7 +57,7 @@ const UserTable = () => {
           <th scope="col" className="px-6 pt-3 pb-1 text-akcent-color dark:text-dark-akcent-color">Email</th>
           <th scope="col" className="px-6 pt-3 pb-1 text-akcent-color dark:text-dark-akcent-color">Phone number</th>
         </tr>
-        <tr className='border-b dark:border-dark-text '>
+        <tr >
           <th className='pl-6 pb-2'>
             <input
               type="text"
@@ -86,6 +95,12 @@ const UserTable = () => {
             />
           </th>
         </tr>
+        <tr className='border-b dark:border-dark-text'>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th className='text-end pr-6 pb-2 font-light capitalize cursor-pointer opacity-60 hover:opacity-100' onClick={() => handleReset()}>Reset filters</th>
+          </tr>
       </thead>
       <tbody>
         {userData.map((user: User) => (
