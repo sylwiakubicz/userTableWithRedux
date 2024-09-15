@@ -95,12 +95,12 @@ const UserTable = () => {
             />
           </th>
         </tr>
-        <tr className='border-b dark:border-dark-text'>
+          <tr className='border-b dark:border-dark-text'>
             <th></th>
             <th></th>
             <th></th>
-            <th className='text-end pr-6 pb-2 font-light capitalize cursor-pointer opacity-60 hover:opacity-100' onClick={() => handleReset()}>Reset filters</th>
-          </tr>
+            <th className={"text-end pr-6 pb-2 font-light capitalize cursor-pointer opacity-60 hover:opacity-100 " + (filters.username != '' || filters.email != '' || filters.name != '' || filters.phone != '' ? 'show' : 'hidden')} onClick={() => handleReset()}>Reset filters</th>
+        </tr>
       </thead>
       <tbody>
         {userData.map((user: User) => (
