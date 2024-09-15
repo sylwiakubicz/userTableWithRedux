@@ -48,7 +48,7 @@ const UserTable = () => {
     <h2 className="text-lg dark:text-dark-text">Loading...</h2>
   ) : error ? (
     <h2 className="text-lg dark:text-dark-text">{error}</h2>
-  ) : (
+  ) : userData ? (
     <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-dark-text shadow-md">
       <thead  className="text-[1rem] text-gray-700 uppercase bg-custom-light-gray dark:bg-dark-secondary dark:text-dark-text">
         <tr>
@@ -113,7 +113,7 @@ const UserTable = () => {
         ))}
       </tbody>
     </table>
-  );
+    ) : (null);
 };
 
 export default UserTable;
