@@ -3,6 +3,7 @@ import { User } from '../interfaces/User';
 import { AppDispatch, RootState } from '../redux/store';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchUsers, applyFilters, resetFilters } from '../redux/user/userSlice';
+import ResetButton from './ResetButton';
 
 
 
@@ -50,7 +51,7 @@ const UserTable = () => {
     <h2 className="text-lg dark:text-dark-text">{error}</h2>
   ) : userData ? (
     <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-dark-text shadow-md">
-      <thead  className="text-[1rem] text-gray-700 uppercase bg-custom-light-gray dark:bg-dark-secondary dark:text-dark-text">
+      <thead  className="text-[1rem] text-gray-700 uppercase bg-custom-light-gray dark:bg-dark-secondary dark:text-dark-text relative">
         <tr>
           <th scope="col" className="px-6 pt-3 pb-1 text-akcent-color dark:text-dark-akcent-color" >Name</th>
           <th scope="col" className="px-6 pt-3 pb-1 text-akcent-color dark:text-dark-akcent-color">Username</th>
@@ -95,12 +96,9 @@ const UserTable = () => {
             />
           </th>
         </tr>
-        <tr className='border-b dark:border-dark-text'>
-          <th></th>
-          <th></th>
-          <th></th>
-          <th className={"text-end pr-6 pb-2 font-light capitalize cursor-pointer opacity-60 hover:opacity-100 " + (filters.username != '' || filters.email != '' || filters.name != '' || filters.phone != '' ? 'show' : 'hidden')} onClick={() => handleReset()}>Reset filters</th>
-        </tr>
+        <th colSpan={4} className="text-end">
+          <ResetButton filters={filters} handleReset={handleReset} />
+        </th>
       </thead>
       <tbody>
         {userData.map((user: User) => (
