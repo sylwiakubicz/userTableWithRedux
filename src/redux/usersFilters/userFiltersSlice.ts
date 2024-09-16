@@ -1,6 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Filters } from "../../interfaces/filters";
-import { resetFilters } from "../user/userSlice";
 
 const initialState : Filters = {
     name: '',
