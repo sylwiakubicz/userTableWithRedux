@@ -12,13 +12,28 @@ const userFiltersSlice = createSlice({
     name: "userFilters",
     initialState,
     reducers: {
-        setUsersFilters: (state, action : PayloadAction<Filters>) => {
-            const { username, email, name, phone } = action.payload
+        setNameFilter: (state, action : PayloadAction<string>) => {
             return {
-                email: email,
-                username: username,
-                name: name,
-                phone: phone
+                ...state,
+                name: action.payload,
+            }
+        },
+        setUsernameFilter: (state, action : PayloadAction<string>) => {
+            return {
+                ...state,
+                username: action.payload,
+            }
+        },
+        setEmailFilter: (state, action : PayloadAction<string>) => {
+            return {
+                ...state,
+                email: action.payload,
+            }
+        },
+        setPhoneFilter: (state, action : PayloadAction<string>) => {
+            return {
+                ...state,
+                phone: action.payload,
             }
         },
         resetUsersFilters: (state) => {
@@ -33,6 +48,6 @@ const userFiltersSlice = createSlice({
 })
 
 
-export const { setUsersFilters, resetUsersFilters} = userFiltersSlice.actions;
+export const { setNameFilter, setUsernameFilter, setPhoneFilter, setEmailFilter, resetUsersFilters} = userFiltersSlice.actions;
 
 export default userFiltersSlice.reducer;
