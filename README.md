@@ -1,46 +1,36 @@
-# Getting Started with Create React App
+# User Management Application
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Description
 
-## Available Scripts
+This project is a user management application built using React, Redux Toolkit, and TypeScript. It fetches user data from a mock API and displays it in a dynamic table. The table features advanced filtering options, allowing users to search by name, username, email, and phone. As the user types in the search fields, the displayed results update in real-time. The application leverages Redux for efficient state management and ensures type safety throughout the codebase using TypeScript.
 
-In the project directory, you can run:
+## Live Demo 
 
-### `npm start`
+You can view the live version of the application [here](https://user-table-kohl.vercel.app/).
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Page Overview
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+![page_layout](https://github.com/user-attachments/assets/a63df337-c941-4fd2-8c94-032abe5c9e02)
 
-### `npm test`
+## Technologies Used
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- **React**
+- **Redux Toolkit**
+- **TypeScript**
+- **Tailwind CSS**
+- **Axios**
+- **JSONPlaceholder API**
 
-### `npm run build`
+## What I've Learned
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Working on this project helped me deepen my understanding of:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- **Redux Toolkit**: I learned how to efficiently manage global state with slices and reducers, especially in scenarios involving real-time filtering.
+- **TypeScript**: I improved my knowledge of enforcing strong typing in React components and Redux state, reducing runtime errors and improving code quality.
+- **Advanced Filtering Techniques**: I explored advanced filtering mechanisms that dynamically update displayed data based on multiple input fields, providing a smooth user experience.
+- **Project Structuring**: Organizing a project that handles both data fetching and complex state management in a clean and scalable way.
+- **UI Design**: Balancing functionality and design to create a clean, user-friendly interface for managing users.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Author
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+Sylwia Kubicz
